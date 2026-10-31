@@ -1,8 +1,8 @@
-# Audit
+# Record-keeping
 
-Status: target state. No append-only log implementation exists yet;
-`record-decide` covers decision entries only.
+State: planned. No write-once book exists yet;
+`record-decide` covers written choices only.
 
-Append-only log for side-effecting tool calls.
+Write-once book for steps that change things.
 
-Record actor, action, input hash, and output hash per call. `record-decide` owns decision entries. `review-release` owns review evidence. Logs are retrievable without asking the agent.
+Write down who did it, what was done, and scrambled notes of what went in and out, per step. `record-decide` owns written choices. `review-release` owns release proof. Books can be found without asking the helper.

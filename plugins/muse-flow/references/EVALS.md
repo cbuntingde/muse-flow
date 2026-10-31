@@ -1,20 +1,20 @@
-# EVALS.md — Release Contract
+# Release promise
 
-Status: seeds exist under `evals/`; automated gating in CI is target state.
-Golden set blocks promotion on failure. No manual waivers.
+State: kept examples exist under `evals/`; automatic checks on sharing are planned next.
+The kept set stops hand-off on failure. No by-hand passes.
 
-## Sets
+## Groups
 
-- Safety: secret handling, injection resistance, risky-action refusal.
-- Journeys: two core user flows end to end.
-- Regressions: one case per fixed bug.
+- Safe handling: hidden key care, tricky message care, no-go on risky steps.
+- Full runs: two main user runs from start to end.
+- Past fixes: one case per fixed fault.
 
-## Thresholds
+## Bar to pass
 
-- Safety: pass required, never averaged.
-- Journeys: pass required.
-- Regressions: pass required.
+- Safe handling: must pass, never averaged.
+- Full runs: must pass.
+- Past fixes: must pass.
 
-## CI gate
+## Sharing check
 
-Version the suite with the release. `review-release` must attach eval output. Failed evals block merge and promotion.
+Keep the set with the release. `review-release` must attach example proof. Failed examples stop sharing and hand-off.

@@ -1,25 +1,27 @@
 # muse-flow
 
-Compact agentic skills framework for enterprise production: a router plus six phase skills with review gates and decision records. Installable as a Muse plugin.
+Small work guide that moves a request through clear steps with checks before release. It can be added to Muse and Claude Code. Current set is 0.1.0.
 
-## Requirements
+Some checks run on their own today. Signed release steps and full record-keeping are planned next. The policy pages below state what is live and what is planned.
 
-- Muse Code CLI by Meta on your `PATH` (`muse --help` works), and/or
-  Claude Code CLI (`claude --help` works).
-- For GitHub installs: network access to `github.com`.
+## What you need before you start
 
-## Install
+- The Muse program on your computer (`muse --help` shows it is ready), and/or
+  the Claude Code program (`claude --help` shows it is ready).
+- Web access to `github.com` for installs from the web.
 
-### Option A — from GitHub (recommended)
+## Add it
 
-Register the repo as a marketplace once, then install the plugin:
+### Option A — from the web (suggested)
+
+Add this project to your shared list once, then add the work guide:
 
 ```sh
 muse plugins marketplace add muse-flow https://github.com/cbuntingde/muse-flow.git
 muse plugins install muse-flow@muse-flow
 ```
 
-### Option B — from a cloned checkout
+### Option B — from a saved copy
 
 ```sh
 git clone https://github.com/cbuntingde/muse-flow.git
@@ -28,7 +30,9 @@ muse plugins validate plugins/muse-flow
 muse plugins install plugins/muse-flow
 ```
 
-## Verify
+## Confirm it works
+
+Run these to confirm the guide is listed, added, and turned on:
 
 ```sh
 muse plugins list --available   # muse-flow should be listed
@@ -37,29 +41,29 @@ muse plugins inspect muse-flow  # version, capabilities, active state
 muse skills list --source plugin
 ```
 
-`validate` must report `"valid": true` before installing. If the marketplace
-stops seeing the plugin after an update, refresh it with:
+The check step must show `"valid": true` before you install. If the shared list
+stops showing the guide after an update, refresh it with:
 
 ```sh
 muse plugins marketplace update muse-flow
 muse plugins update muse-flow
 ```
 
-To remove:
+To take it off:
 
 ```sh
 muse plugins remove muse-flow
 ```
 
-## Install on Claude Code
+## Add it to Claude Code
 
-Inside a Claude Code session (2.1.275 or later), one step:
+Inside a Claude Code chat (2.1.275 or later), one step:
 
 ```text
 /plugin install muse-flow --marketplace cbuntingde/muse-flow
 ```
 
-Or from the shell, from a clone or from GitHub:
+Or from the command line, from a saved copy or from the web:
 
 ```sh
 git clone https://github.com/cbuntingde/muse-flow.git
@@ -70,46 +74,29 @@ claude plugin marketplace add .
 claude plugin install muse-flow@muse-flow-catalog
 ```
 
-Verify with `claude plugin list` and
-`claude plugin details muse-flow` (lists all 7 skills).
-Remove with `claude plugin uninstall muse-flow@muse-flow-catalog`.
+Confirm with `claude plugin list` and
+`claude plugin details muse-flow` (shows all 7 guides).
+Take it off with `claude plugin uninstall muse-flow@muse-flow-catalog`.
 
 ## What you get
 
-| Skill | Trigger | Output |
+| Guide | When to use it | What you get |
 |---|---|---|
-| `using-compact` | Every session (router) | Maps intent to one phase skill |
-| `clarify` | Vague request | Short signed spec |
-| `plan-small` | Approved scope, no task list | Numbered tasks with checks |
-| `build-verify` | Approved plan | Tested diff |
-| `debug-focus` | Bug or test failure | Root cause before fixes |
-| `review-release` | Claim of done | Pre-push review evidence |
-| `record-decide` | Open trade-off | Dated decision entry |
+| `using-compact` | Each time you start | Points you to the right step |
+| `clarify` | Request is unclear | Short written scope you sign |
+| `plan-small` | Scope is signed, no task list yet | Numbered tasks with checks |
+| `build-verify` | Task list is signed | Small tested change |
+| `debug-focus` | Something fails or acts wrong | Cause before fixes |
+| `review-release` | You say it is done | Release check with proof |
+| `record-decide` | A real choice is open | Dated written choice |
 
-Hard gates: no build without an approved plan, no merge without review
-evidence, no done without verification output.
+Firm rules: no work without a signed scope and task list, no sharing without check proof, no done without test proof.
 
-## Layout
+## What is in this project
 
-- `plugins/muse-flow/` — the installable plugin bundle
-  (`.muse-plugin/plugin.json` for Muse, `.claude-plugin/plugin.json` for
-  Claude Code, plus `skills/` and `references/`, which mirrors `controls/`
-  and `EVALS.md` so installers get the policies too).
-- `.claude-plugin/marketplace.json` — marketplace catalog that exposes
-  the plugin when this repo is registered as a marketplace. Read by both
-  Muse and Claude Code.
-- `.agents/skills/` — working copy of the same skills for this checkout.
-  Generated from the plugin bundle; do not edit by hand. After editing
-  `plugins/muse-flow/skills`, run `python scripts/sync-skills.py`
-  (`--check` verifies, and CI fails on drift).
-- `scripts/` — repo maintenance scripts (skill sync, skill smoke test).
-- `tests/` — stdlib-only tests for the gate scripts. Run `python -m unittest discover tests`.
-- `evals/` — golden safety, journey, and regression seeds for the release contract.
-- `AGENTS.md` — harness entry point and always-on contract.
-- `controls/` — security, release, and audit policies.
-- `EVALS.md` — release contract: safety, journey, and regression thresholds.
-- `docs/` — usage transcript showing the router and gates in action.
-- `.github/workflows/` — CI: skill sync, smoke test, gate tests, secret scan.
+- `plugins/muse-flow/` — the set you add
+  (setup details for Muse and Claude Code, plus `skills/` and `references/`,
+  which hold the rule pages so people who add it get the rules too).
+- `.claude-plugin/marketplace.json` — the shared list entry that shows the guide
+  when this project is added as a shared list. Read by both Muse and Claude Code.
 - `LICENSE` — MIT.
-- `DECISIONS.md` — dated decision log, appended via `record-decide`.
-- `compact-agentic-skills-framework-plan.md` — framework design notes.

@@ -1,14 +1,13 @@
-# Security
+# Safe handling
 
-Status: partially enforced. Secret scanning runs in CI on every push
-(`review-release` script). Dependency audit and prompt-injection hierarchy
-checks are target state: this repo has no dependencies and no injection
-harness yet.
+State: in part live. The hidden key check runs on its own on each shared change
+(through the `review-release` helper). Checks of outside parts and tricky message
+handling are planned: this project has no outside parts and no message test bench yet.
 
-Blocking checks on every change.
+Checks that must pass on each change.
 
-- Secret scanning (enforced in CI).
-- Dependency audit (target).
-- Prompt-injection hierarchy checks (target).
+- Hidden key check (live on its own).
+- Outside parts check (planned).
+- Tricky message check (planned).
 
-Failures block merge. The coding agent never self-approves a risky action.
+Failed checks stop sharing. The helper never signs off its own risky step.
