@@ -1,0 +1,1 @@
+{"description": "Compact agentic skills framework marketplace.","name": "muse-flow-catalog","owner": {"name": "muse-flow"},"plugins": [{"description": "Compact agentic skills framework for enterprise production: router plus six phase skills with review gates and decision records.","name": "muse-flow","source": "./plugins/muse-flow"}]}
