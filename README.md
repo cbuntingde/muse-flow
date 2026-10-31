@@ -4,7 +4,7 @@ Compact agentic skills framework for enterprise production: a router plus six ph
 
 ## Requirements
 
-- [Muse Code](https://github.com/anthropics/muse) CLI on your `PATH` (`muse --help` works).
+- Muse Code CLI by Meta on your `PATH` (`muse --help` works).
 - For GitHub installs: network access to `github.com`.
 
 ## Install
