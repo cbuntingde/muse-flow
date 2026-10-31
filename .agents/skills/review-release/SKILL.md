@@ -10,8 +10,8 @@ No merge without evidence.
 ## Steps
 
 1. Check the diff is surgical and traced to the request.
-2. Run the relevant tests and attach output.
-3. Run regression checks for touched areas.
+2. Run `scripts/check-evidence.py` against the test and regression logs.
+3. Run `scripts/secret-scan.py` on the changed files.
 4. Record approval or required changes.
 
 ## Output

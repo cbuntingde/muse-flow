@@ -1,0 +1,30 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Skill trees in sync
+        run: python scripts/sync-skills.py --check
+
+      - name: Skill smoke test
+        run: python scripts/smoke-skills.py
+
+      - name: Gate script tests
+        run: python -m unittest discover tests
+
+      - name: Secret scan (fixtures excluded by design)
+        run: git ls-files | grep -v '^tests/' | grep -v '^evals/' | xargs -r python plugins/muse-flow/skills/review-release/scripts/secret-scan.py
+
+      - name: Plugin bundle validation (when muse CLI is available)
+        run: command -v muse >/dev/null && muse plugins validate plugins/muse-flow || echo "muse CLI not on runner; skipping"

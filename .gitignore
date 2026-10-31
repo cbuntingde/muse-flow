@@ -1,0 +1,3 @@
+# Tool-owned working state, never committed.
+.agents/memory/
+__pycache__/

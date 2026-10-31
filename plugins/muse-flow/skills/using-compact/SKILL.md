@@ -22,4 +22,8 @@ Load this file at session start and after compaction.
 - Merge requires review evidence.
 - Done requires verification output.
 
+## Visibility
+
+State the active skill in one short line at each phase change (for example `skill: clarify`). Routing is silent by default, so say where you are.
+
 If the required artifact is missing, route back to the skill that produces it. Do not skip forward.

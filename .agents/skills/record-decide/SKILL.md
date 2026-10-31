@@ -12,7 +12,7 @@ No silent decisions.
 1. Name the choice and date.
 2. List options considered.
 3. State rationale and owner.
-4. Append to the decision log.
+4. Append via `scripts/append-decision.py` to the decision log.
 
 ## Output
 

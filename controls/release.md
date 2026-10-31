@@ -1,5 +1,8 @@
 # Release
 
+Status: target state. No environments, promotion signing, RBAC, or rollback
+automation exist yet.
+
 Explicit environments with signed promotion.
 
 - Development, staging with production-like data controls, production.

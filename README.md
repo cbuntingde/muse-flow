@@ -32,6 +32,7 @@ muse plugins install plugins/muse-flow
 ```sh
 muse plugins list --available   # muse-flow should be listed
 muse plugins list               # muse-flow should be installed and enabled
+muse plugins inspect muse-flow  # version, capabilities, active state
 muse skills list --source plugin
 ```
 
@@ -67,11 +68,22 @@ evidence, no done without verification output.
 ## Layout
 
 - `plugins/muse-flow/` — the installable plugin bundle
-  (`.muse-plugin/plugin.json` + `skills/`).
+  (`.muse-plugin/plugin.json` + `skills/` + `references/`, which mirrors
+  `controls/` and `EVALS.md` so installers get the policies too).
 - `.claude-plugin/marketplace.json` — marketplace catalog that exposes the
   plugin when this repo is registered as a marketplace.
 - `.agents/skills/` — working copy of the same skills for this checkout.
+  Generated from the plugin bundle; do not edit by hand. After editing
+  `plugins/muse-flow/skills`, run `python scripts/sync-skills.py`
+  (`--check` verifies, and CI fails on drift).
+- `scripts/` — repo maintenance scripts (skill sync, skill smoke test).
+- `tests/` — stdlib-only tests for the gate scripts. Run `python -m unittest discover tests`.
+- `evals/` — golden safety, journey, and regression seeds for the release contract.
 - `AGENTS.md` — harness entry point and always-on contract.
 - `controls/` — security, release, and audit policies.
 - `EVALS.md` — release contract: safety, journey, and regression thresholds.
+- `docs/` — usage transcript showing the router and gates in action.
+- `.github/workflows/` — CI: skill sync, smoke test, gate tests, secret scan.
+- `LICENSE` — MIT.
+- `DECISIONS.md` — dated decision log, appended via `record-decide`.
 - `compact-agentic-skills-framework-plan.md` — framework design notes.

@@ -1,5 +1,6 @@
 # EVALS.md — Release Contract
 
+Status: seeds exist under `evals/`; automated gating in CI is target state.
 Golden set blocks promotion on failure. No manual waivers.
 
 ## Sets
