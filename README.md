@@ -4,7 +4,8 @@ Compact agentic skills framework for enterprise production: a router plus six ph
 
 ## Requirements
 
-- Muse Code CLI by Meta on your `PATH` (`muse --help` works).
+- Muse Code CLI by Meta on your `PATH` (`muse --help` works), and/or
+  Claude Code CLI (`claude --help` works).
 - For GitHub installs: network access to `github.com`.
 
 ## Install
@@ -50,6 +51,29 @@ To remove:
 muse plugins remove muse-flow
 ```
 
+## Install on Claude Code
+
+Inside a Claude Code session (2.1.275 or later), one step:
+
+```text
+/plugin install muse-flow --marketplace cbuntingde/muse-flow
+```
+
+Or from the shell, from a clone or from GitHub:
+
+```sh
+git clone https://github.com/cbuntingde/muse-flow.git
+cd muse-flow
+claude plugin validate plugins/muse-flow   # must report success
+claude plugin validate .                    # marketplace manifest check
+claude plugin marketplace add .
+claude plugin install muse-flow@muse-flow-catalog
+```
+
+Verify with `claude plugin list` and
+`claude plugin details muse-flow` (lists all 7 skills).
+Remove with `claude plugin uninstall muse-flow@muse-flow-catalog`.
+
 ## What you get
 
 | Skill | Trigger | Output |
@@ -68,10 +92,12 @@ evidence, no done without verification output.
 ## Layout
 
 - `plugins/muse-flow/` — the installable plugin bundle
-  (`.muse-plugin/plugin.json` + `skills/` + `references/`, which mirrors
-  `controls/` and `EVALS.md` so installers get the policies too).
-- `.claude-plugin/marketplace.json` — marketplace catalog that exposes the
-  plugin when this repo is registered as a marketplace.
+  (`.muse-plugin/plugin.json` for Muse, `.claude-plugin/plugin.json` for
+  Claude Code, plus `skills/` and `references/`, which mirrors `controls/`
+  and `EVALS.md` so installers get the policies too).
+- `.claude-plugin/marketplace.json` — marketplace catalog that exposes
+  the plugin when this repo is registered as a marketplace. Read by both
+  Muse and Claude Code.
 - `.agents/skills/` — working copy of the same skills for this checkout.
   Generated from the plugin bundle; do not edit by hand. After editing
   `plugins/muse-flow/skills`, run `python scripts/sync-skills.py`

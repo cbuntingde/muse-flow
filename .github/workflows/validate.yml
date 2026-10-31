@@ -28,3 +28,6 @@ jobs:
 
       - name: Plugin bundle validation (when muse CLI is available)
         run: command -v muse >/dev/null && muse plugins validate plugins/muse-flow || echo "muse CLI not on runner; skipping"
+
+      - name: Claude manifest validation (when claude CLI is available)
+        run: command -v claude >/dev/null && claude plugin validate plugins/muse-flow && claude plugin validate . || echo "claude CLI not on runner; skipping"
